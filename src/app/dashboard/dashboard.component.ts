@@ -1,31 +1,25 @@
-import { Component, OnInit } from '@angular/core'; // OnInit اضافه شد
-import { CommonModule } from '@angular/common'; // برای ngIf, ngFor (اگر نیاز باشد)
-import { Router, RouterModule } from '@angular/router'; // Router و RouterModule برای مسیریابی و routerLink
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common'; // برای استفاده از CommonModule
+import { Router } from '@angular/router'; // برای هدایت به صفحه لاگ اوت
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true, // این یک کامپوننت مستقل است
-  imports: [CommonModule, RouterModule], // CommonModule و RouterModule را اضافه کنید
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'] // می‌توانید استایل‌های مختص داشبورد را در اینجا قرار دهید
+  styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit { // OnInit را implements کنید
-  constructor(private router: Router) { } // Router را تزریق کنید
+export class DashboardComponent {
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    // منطق اولیه هنگام بارگذاری کامپوننت (اختیاری)
-  }
-
-  onLogout(): void {
-    // حذف JWT Token از Local Storage
-    localStorage.removeItem('jwtToken');
-    console.log('JWT Token removed.');
-    // هدایت به Spring Boot برای پردازش لاگ اوت (که در SecurityConfig تعریف شده است)
-    // و سپس Spring Boot کاربر را به login.html?logout=true هدایت می‌کند
-    fetch('http://localhost:8080/perform_logout', { method: 'POST' })
-      .finally(() => {
-        // در صورت موفقیت یا شکست درخواست logout به بک‌اند، به صفحه لاگین هدایت شوید
-        this.router.navigate(['/login'], { queryParams: { logout: 'true' } });
-      });
+  /**
+   * Handles user logout.
+   * Clears the JWT token from localStorage and redirects to Spring Boot's logout endpoint.
+   */
+  logout(): void {
+    localStorage.removeItem('jwtToken'); // پاک کردن توکن JWT از localStorage
+    // ریدایرکت به اندپوینت logout در Spring Boot
+    // Spring Boot سپس session را پاک کرده و به login.html?logout=true ریدایرکت می‌کند
+    window.location.href = 'http://localhost:8080/perform_logout';
   }
 }
