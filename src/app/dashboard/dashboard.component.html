@@ -1,0 +1,16 @@
+<div class="container text-center mt-5">
+  <h2>به داشبورد خوش آمدید!</h2>
+  <p>شما با موفقیت وارد شدید.</p>
+
+  <div class="mt-4">
+    <a routerLink="/user-list" class="btn btn-primary mx-2">لیست کاربران</a>
+    <a routerLink="/manage-user-menus" class="btn btn-info mx-2">مدیریت نقش و منوهای کاربران</a>
+    <a routerLink="/create-user" class="btn btn-success mx-2">ایجاد کاربر جدید</a>
+    <a routerLink="/create-role" class="btn btn-success mx-2">ایجاد نقش جدید</a>
+    <a routerLink="/create-permission" class="btn btn-success mx-2">ایجاد مجوز جدید</a>
+    <a routerLink="/manage-role-permissions" class="btn btn-warning mx-2">مدیریت مجوزهای نقش‌ها</a>
+    <a routerLink="/create-menu-form" class="btn btn-info mx-2">ایجاد منوی جدید</a>
+  </div>
+
+  <button class="btn btn-danger mt-5" (click)="onLogout()">خروج</button>
+</div>
