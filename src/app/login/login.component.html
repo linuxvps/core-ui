@@ -1,74 +1,36 @@
-<div class="container d-flex justify-content-center align-items-center min-vh-100" style="background: linear-gradient(135deg, #71b7e6, #9b59b6); font-family: 'Inter', sans-serif;">
-  <div class="card p-4 shadow-lg" style="width: 100%; max-width: 400px; border-radius: 15px; animation: fadeIn 1s ease-in-out; background-color: #fff;">
-    <div class="card-body text-center">
-      <h2 class="card-title mb-5 fw-bold" style="color: #333; position: relative; padding-bottom: 15px; font-size: 1.8rem;">ورود به سیستم
-        <div style="content: ''; position: absolute; bottom: 0; right: 50%; transform: translateX(50%); width: 80px; height: 4px; background-color: #71b7e6; border-radius: 5px;"></div>
+<div class="login-page-wrapper d-flex justify-content-center align-items-center min-vh-100">
+  <div class="login-card p-4 shadow-lg text-center">
+    <div class="card-body">
+      <h2 class="card-title mb-5 fw-bold">ورود به سیستم
+        <div class="underline"></div>
       </h2>
 
       <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
         <div class="mb-4 text-end">
-          <label for="username" class="form-label fw-bold" style="color: #555;">نام کاربری:</label>
-          <input type="text" class="form-control rounded-pill px-3 py-2" id="username" name="username" [(ngModel)]="username" required style="border: 1px solid #ddd; transition: all 0.3s ease;">
+          <label for="username" class="form-label fw-bold">نام کاربری:</label>
+          <input type="text" class="form-control rounded-pill px-3 py-2" id="username" name="username" [(ngModel)]="username" required>
         </div>
         <div class="mb-4 text-end">
-          <label for="password" class="form-label fw-bold" style="color: #555;">رمز عبور:</label>
-          <input type="password" class="form-control rounded-pill px-3 py-2" id="password" name="password" [(ngModel)]="password" required style="border: 1px solid #ddd; transition: all 0.3s ease;">
+          <label for="password" class="form-label fw-bold">رمز عبور:</label>
+          <input type="password" class="form-control rounded-pill px-3 py-2" id="password" name="password" [(ngModel)]="password" required>
         </div>
 
-        <div *ngIf="errorMessage" class="alert alert-danger text-end rounded-3 mb-3 py-2" role="alert" style="font-size: 0.9rem;">
+        <div *ngIf="errorMessage" class="alert alert-danger text-end rounded-3 mb-3 py-2" role="alert">
           {{ errorMessage }}
         </div>
-        <div *ngIf="successMessage" class="alert alert-success text-end rounded-3 mb-3 py-2" role="alert" style="font-size: 0.9rem;">
+        <div *ngIf="successMessage" class="alert alert-success text-end rounded-3 mb-3 py-2" role="alert">
           {{ successMessage }}
         </div>
 
-        <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill mb-3" style="background: linear-gradient(45deg, #9b59b6, #71b7e6); border: none; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">ورود</button>
+        <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill mb-3">ورود</button>
       </form>
 
-      <div class="divider my-4" style="border-bottom: 1px solid #eee;"></div>
+      <div class="divider my-4"></div>
 
-      <button (click)="loginWithGoogle()" class="btn btn-light w-100 py-3 fw-bold rounded-pill d-flex align-items-center justify-content-center" style="background-color: #f0f0f0; border: 1px solid #ddd; color: #555; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-        <img src="https://www.google.com/favicon.ico" alt="Google icon" class="me-2" style="width: 24px; height: 24px;">
+      <button (click)="loginWithGoogle()" class="btn btn-google w-100 py-3 fw-bold rounded-pill d-flex align-items-center justify-content-center">
+        <img src="https://www.google.com/favicon.ico" alt="Google icon" class="me-2 google-icon">
         ورود با گوگل
       </button>
     </div>
   </div>
 </div>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-  body {
-    font-family: 'Inter', sans-serif;
-  }
-
-  .card {
-    background-color: #fff;
-  }
-
-  .form-control:focus {
-    border-color: #9b59b6;
-    box-shadow: 0 0 0 0.25rem rgba(155, 89, 182, 0.25);
-  }
-
-  .btn-primary:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-  }
-
-  .btn-light:hover {
-    background-color: #e0e0e0;
-    transform: translateY(-2px);
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

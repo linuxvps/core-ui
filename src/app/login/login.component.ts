@@ -98,10 +98,8 @@ export class LoginComponent implements OnInit {
    * Redirects the browser to the Spring Boot OAuth2 authorization endpoint.
    */
   loginWithGoogle(): void {
-    this.errorMessage = null; // پاک کردن پیام‌های قبلی
+    this.errorMessage = null;
     this.successMessage = null;
-    // ریدایرکت کل مرورگر به URL شروع OAuth2 در Spring Boot
-    // Spring Boot سپس ریدایرکت به صفحه لاگین گوگل را مدیریت خواهد کرد
     window.location.href = 'http://localhost:8080/oauth2/authorization/google';
   }
 }
