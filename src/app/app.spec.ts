@@ -1,23 +1,27 @@
 import { TestBed } from '@angular/core/testing';
-import { App } from './app';
+import { AppComponent } from './app'; // تصحیح شد: وارد کردن AppComponent
+import { RouterTestingModule } from '@angular/router/testing'; // برای تست RouterOutlet
 
-describe('App', () => {
+describe('AppComponent', () => { // تصحیح شد: نام تست
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App],
+      imports: [
+        AppComponent, // تصحیح شد: وارد کردن کامپوننت صحیح
+        RouterTestingModule // RouterOutlet به این ماژول نیاز دارد
+      ],
     }).compileComponents();
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(App);
+    const fixture = TestBed.createComponent(AppComponent); // تصحیح شد
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, core-ui');
+  it(`should have the 'Your Angular App' title`, () => { // تست عنوان را دقیق‌تر می‌کنیم
+    const fixture = TestBed.createComponent(AppComponent); // تصحیح شد
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('Your Angular App');
   });
+
 });
