@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
   /**
    * Handles traditional username/password login.
    */
+
   onSubmit(): void {
     this.errorMessage = null;
     this.successMessage = null;
