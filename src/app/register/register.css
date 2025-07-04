@@ -32,7 +32,7 @@ body {
   color: var(--text-color-dark);
 }
 
-/* Login Wrapper */
+/* Wrapper */
 .login-page-wrapper {
   min-height: 100vh;
   display: flex;
@@ -44,7 +44,7 @@ body {
   padding: 2rem;
 }
 
-/* Login Card */
+/* Card */
 .login-card {
   width: 100%;
   max-width: 450px;
@@ -58,11 +58,6 @@ body {
 }
 
 /* Header and Title */
-.card-header {
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
 .card-title {
   color: var(--primary-color);
   position: relative;
@@ -83,17 +78,7 @@ body {
   border-radius: 5px;
 }
 
-.card-subtitle {
-  color: var(--neutral-medium);
-  font-size: 1rem;
-  margin-top: 0.5rem;
-}
-
 /* Form Elements */
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
 .form-label {
   color: var(--neutral-dark);
   font-size: 1rem;
@@ -140,26 +125,6 @@ body {
 }
 
 /* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: center;
-  white-space: nowrap;
-  user-select: none;
-  border: 1px solid transparent;
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-}
-
 .btn-primary {
   background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
   color: black !important;
@@ -177,27 +142,11 @@ body {
   box-shadow: 0 8px 20px rgba(26, 54, 93, 0.3);
 }
 
-/* Google Button */
-.btn-google {
-  background-color: var(--button-google-bg);
-  border: 1px solid var(--button-google-border);
-  color: var(--button-google-text) !important;
-  font-size: 1.15rem;
-  padding: 0.9rem 1.5rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.btn-google:hover {
-  background-color: var(--neutral-light);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
-
-.google-icon {
-  width: 28px;
-  height: 28px;
-  margin-right: 10px;
+.btn-primary:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Divider */
@@ -225,24 +174,6 @@ body {
   margin-left: 1rem;
 }
 
-/* Footer */
-.footer-links {
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 0.95rem;
-}
-
-.footer-link {
-  color: var(--accent-color);
-  text-decoration: none;
-  margin: 0 0.5rem;
-  transition: color 0.2s;
-}
-
-.footer-link:hover {
-  color: var(--secondary-color);
-  text-decoration: underline;
-}
 
 /* Animations */
 @keyframes fadeIn {
@@ -260,48 +191,4 @@ body {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .login-card {
-    max-width: 90%;
-    margin: 1rem;
-    padding: 2rem;
-  }
-
-  .card-title {
-    font-size: 1.8rem;
-  }
-
-  .btn-primary,
-  .btn-google {
-    font-size: 1rem;
-    padding: 0.75rem 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .login-card {
-    padding: 1.5rem;
-  }
-
-  .card-title {
-    font-size: 1.5rem;
-    margin-bottom: 2rem !important;
-  }
-
-  .card-title .underline {
-    width: 80px;
-    height: 3px;
-  }
-
-  .form-control {
-    font-size: 0.95rem;
-    padding: 0.6rem 1rem;
-  }
-
-  .login-page-wrapper {
-    padding: 1rem;
-  }
 }
