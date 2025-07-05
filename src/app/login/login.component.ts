@@ -84,4 +84,13 @@ export class LoginComponent implements OnInit {
     this.successMessage = null;
     window.location.href = 'http://localhost:8080/oauth2/authorization/google';
   }
+
+  logout(): void {
+    // ۱. توکن JWT را از حافظه محلی پاک می‌کنیم
+    localStorage.removeItem('jwtToken');
+    console.log('User logged out, token removed.');
+
+    // ۲. کاربر را به صفحه لاگین هدایت می‌کنیم
+    this.router.navigate(['/login']);
+  }
 }
