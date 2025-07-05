@@ -78,24 +78,35 @@ body {
   border-radius: 5px;
 }
 
-/* Form Elements */
-.form-label {
-  color: var(--neutral-dark);
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  display: block;
+/* Form Grouping and Alignment */
+.form-group {
+  text-align: left; /* Aligns label and validation messages to the left */
 }
 
+/* Form Label Styling */
+.form-label {
+  color: var(--neutral-dark);
+  font-size: 0.9rem; /* Slightly smaller font for the label */
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block; /* Makes the label take its own line */
+}
+
+/* Input Field Styling */
 .form-control {
   border: 1px solid var(--input-border-color);
-  border-radius: 8px;
+  /* border-radius is handled by Bootstrap's .rounded-pill class */
   transition: all 0.3s ease;
   font-size: 1.05rem;
   padding: 0.75rem 1.25rem;
   width: 100%;
-  background-color: #fff;
+  background-color: #f8fafc; /* Changed to a light gray background */
   color: var(--text-color-dark);
+}
+
+.form-control::placeholder {
+  color: #a0aec0; /* Softer color for placeholder text */
+  font-weight: 400;
 }
 
 .form-control:focus {
@@ -104,13 +115,26 @@ body {
   outline: none;
 }
 
-/* Alerts */
+/* Custom Style for Validation Messages */
+.validation-message {
+  color: var(--error-color);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding-left: 0.25rem; /* Small indent */
+  margin-top: 0.3rem; /* Space between input and message */
+  height: 1.2em; /* Reserve space to prevent layout shift */
+}
+
+
+/* General Alerts (for overall form messages) */
 .alert {
   font-size: 0.95rem;
   padding: 0.75rem 1rem;
   margin-top: 1rem;
   border-radius: 8px;
 }
+
+
 
 .alert-danger {
   background-color: rgba(229, 62, 62, 0.1);

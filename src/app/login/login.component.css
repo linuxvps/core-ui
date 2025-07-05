@@ -89,35 +89,34 @@ body {
   margin-top: 0.5rem;
 }
 
-/* Form Elements */
 .form-group {
-  margin-bottom: 1.5rem;
+  text-align: left; /* تراز کردن محتوای گروه به سمت چپ */
 }
 
 .form-label {
   color: var(--neutral-dark);
-  font-size: 1rem;
+  font-size: 0.9rem; /* می‌توانید سایز را کمی کوچکتر کنید */
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  display: block;
+  margin-bottom: 0.5rem; /* فاصله بین لیبل و اینپوت */
+  display: block; /* لیبل را به یک بلاک تبدیل می‌کند تا تمام عرض را بگیرد */
 }
 
 .form-control {
   border: 1px solid var(--input-border-color);
-  border-radius: 8px;
+  border-radius: 8px; /* می‌توانید از rounded-pill بوت استرپ هم استفاده کنید */
   transition: all 0.3s ease;
-  font-size: 1.05rem;
+  font-size: 1rem;
   padding: 0.75rem 1.25rem;
   width: 100%;
-  background-color: #fff;
+  background-color: #f8fafc; /* یک پس‌زمینه خیلی ملایم برای تمایز */
   color: var(--text-color-dark);
 }
 
-.form-control:focus {
-  border-color: var(--input-focus-border-color);
-  box-shadow: 0 0 0 0.25rem rgba(49, 130, 206, 0.25);
-  outline: none;
+.form-control::placeholder {
+  color: #a0aec0; /* رنگ خاکستری ملایم برای placeholder */
+  font-weight: 400;
 }
+
 
 /* Alerts */
 .alert {

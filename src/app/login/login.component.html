@@ -6,19 +6,20 @@
       </h2>
 
       <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-        <div class="mb-4 text-end">
-          <label for="username" class="form-label fw-bold">email:</label>
-          <input type="text" class="form-control rounded-pill px-3 py-2" id="username" name="username" [(ngModel)]="username" required>
-        </div>
-        <div class="mb-4 text-end">
-          <label for="password" class="form-label fw-bold">password:</label>
-          <input type="password" class="form-control rounded-pill px-3 py-2" id="password" name="password" [(ngModel)]="password" required>
+        <div class="form-group mb-4">
+          <label for="username" class="form-label">email:</label>
+          <input type="text" class="form-control rounded-pill" id="username" name="username" [(ngModel)]="username" required placeholder="example@email.com">
         </div>
 
-        <div *ngIf="errorMessage" class="alert alert-danger text-end rounded-3 mb-3 py-2" role="alert">
+        <div class="form-group mb-4">
+          <label for="password" class="form-label">password:</label>
+          <input type="password" class="form-control rounded-pill" id="password" name="password" [(ngModel)]="password" required placeholder="Enter your password">
+        </div>
+
+        <div *ngIf="errorMessage" class="alert alert-danger text-start rounded-3 mb-3 py-2" role="alert">
           {{ errorMessage }}
         </div>
-        <div *ngIf="successMessage" class="alert alert-success text-end rounded-3 mb-3 py-2" role="alert">
+        <div *ngIf="successMessage" class="alert alert-success text-start rounded-3 mb-3 py-2" role="alert">
           {{ successMessage }}
         </div>
 
@@ -31,16 +32,16 @@
         <img src="https://www.google.com/favicon.ico" alt="Google icon" class="me-2 google-icon">
         Continue with Google
       </button>
-    </div>
 
-    <div class="mt-8 text-center">
-      <p class="text-gray-600">
-        Don't have an account?
-        <a routerLink="/register" class="font-semibold text-blue-600 hover:text-blue-800">
-          Sign up
-        </a>
-      </p>
-    </div>
+      <div class="mt-4 text-center">
+        <p class="text-secondary">
+          Don't have an account?
+          <a routerLink="/register" class="fw-semibold text-primary">
+            Sign up
+          </a>
+        </p>
+      </div>
 
+    </div>
   </div>
 </div>
