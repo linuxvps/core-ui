@@ -1,16 +1,18 @@
 <div class="dashboard-container">
   <header class="dashboard-header">
     <h1>Welcome to Your Dashboard</h1>
-    <!-- دکمه خروج که متد logout() را فراخوانی می‌کند -->
-    <button (click)="logout()" class="btn btn-logout">Logout</button>
+
+    <!-- بخش جدید برای دکمه‌های کاربر -->
+    <div class="header-actions">
+      <!-- لینک پروفایل -->
+      <a routerLink="/profile" class="btn btn-profile">Profile</a>
+      <!-- دکمه خروج -->
+      <button (click)="logout()" class="btn btn-logout">Logout</button>
+    </div>
   </header>
 
   <main class="dashboard-content">
     <p>This is your protected dashboard area. Only logged-in users can see this.</p>
-
-    <div class="dashboard-links">
-      <!-- می‌توانید لینک‌های دیگری مانند پروفایل را اینجا قرار دهید -->
-      <a routerLink="/profile" class="dashboard-link">Go to Profile</a>
-    </div>
+    <!-- این بخش به هدر منتقل شد -->
   </main>
 </div>

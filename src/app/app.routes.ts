@@ -1,8 +1,9 @@
-import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import {Routes} from '@angular/router';
+import {LoginComponent} from './login/login.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {AuthCallbackComponent} from './auth-callback/auth-callback.component';
 import {RegisterComponent} from './register/register';
+import {ProfileComponent} from './profile/profile';
 // وارد کردن صحیح کامپوننت ثبت‌نام
 // فرض می‌کنیم یک گارد برای محافظت از مسیرها دارید
 // import { authGuard } from './auth.guard';
@@ -33,6 +34,8 @@ export const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   },
+  {path: 'profile', component: ProfileComponent /*, canActivate: [authGuard] */},
+
   // مسیر Wildcard: اگر کاربر مسیری را وارد کرد که وجود ندارد، او را به لاگین بفرست
   {
     path: '**',
