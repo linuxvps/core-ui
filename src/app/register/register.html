@@ -24,7 +24,7 @@
           <!-- Validation Messages for Password -->
           <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="validation-message">
             <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</span>
-            <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</span>
+            <span *ngIf="registerForm.get('password')?.errors?.['minlength']">At least 6 chars.</span>
           </div>
         </div>
 
