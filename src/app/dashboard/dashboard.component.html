@@ -1,26 +1,16 @@
-<div class="container d-flex justify-content-center align-items-center min-vh-100" style="background: linear-gradient(135deg, #71b7e6, #9b59b6); font-family: 'Inter', sans-serif;">
-  <div class="card p-4 shadow-lg text-center" style="width: 100%; max-width: 600px; border-radius: 15px; background-color: #fff;">
-    <div class="card-body">
-      <h2 class="card-title mb-4 fw-bold" style="color: #333;">به داشبورد خوش آمدید!</h2>
-      <p class="mb-4" style="color: #555;">شما با موفقیت وارد سیستم شدید.</p>
-      <button (click)="logout()" class="btn btn-danger py-3 fw-bold rounded-pill" style="background-color: #dc3545; border: none; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">خروج</button>
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Welcome to Your Dashboard</h1>
+    <!-- دکمه خروج که متد logout() را فراخوانی می‌کند -->
+    <button (click)="logout()" class="btn btn-logout">Logout</button>
+  </header>
+
+  <main class="dashboard-content">
+    <p>This is your protected dashboard area. Only logged-in users can see this.</p>
+
+    <div class="dashboard-links">
+      <!-- می‌توانید لینک‌های دیگری مانند پروفایل را اینجا قرار دهید -->
+      <a routerLink="/profile" class="dashboard-link">Go to Profile</a>
     </div>
-  </div>
+  </main>
 </div>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-  body {
-    font-family: 'Inter', sans-serif;
-  }
-
-  .card {
-    background-color: #fff;
-  }
-
-  .btn-danger:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-  }
-</style>

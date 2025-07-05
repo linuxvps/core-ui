@@ -1,25 +1,28 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // برای استفاده از CommonModule
-import { Router } from '@angular/router'; // برای هدایت به صفحه لاگ اوت
+import { Router, RouterModule } from '@angular/router'; // RouterModule برای routerLink لازم است
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule], // RouterModule را اضافه کنید
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  constructor(private router: Router) {}
+
+  // سرویس Router را برای هدایت کاربر تزریق می‌کنیم
+  constructor(private router: Router) { }
 
   /**
-   * Handles user logout.
-   * Clears the JWT token from localStorage and redirects to Spring Boot's logout endpoint.
+   * این متد کاربر را با پاک کردن توکن و هدایت به صفحه لاگین، از سیستم خارج می‌کند.
    */
   logout(): void {
-    localStorage.removeItem('jwtToken'); // پاک کردن توکن JWT از localStorage
-    // ریدایرکت به اندپوینت logout در Spring Boot
-    // Spring Boot سپس session را پاک کرده و به login.html?logout=true ریدایرکت می‌کند
-    window.location.href = 'http://localhost:8080/perform_logout';
+    // ۱. توکن JWT را از حافظه محلی پاک می‌کنیم
+    localStorage.removeItem('jwtToken');
+    console.log('User logged out, token removed.');
+
+    // ۲. کاربر را به صفحه لاگین هدایت می‌کنیم
+    this.router.navigate(['/login']);
   }
 }

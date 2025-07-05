@@ -6,10 +6,37 @@
       </h2>
 
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
-        <!-- Email Input Group -->
+
+        <!-- First Name Input Group -->
+        <div class="form-group mb-3">
+          <label for="firstName" class="form-label fw-bold">First Name:</label>
+          <input type="text" class="form-control rounded-pill px-3 py-2" id="firstName" formControlName="firstName" placeholder="Your first name">
+          <!-- Validation Messages for First Name -->
+          <div *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched" class="validation-message">
+            <span *ngIf="registerForm.get('firstName')?.errors?.['required']">First name is required.</span>
+          </div>
+        </div>
+
+        <!-- Last Name Input Group -->
+        <div class="form-group mb-3">
+          <label for="lastName" class="form-label fw-bold">Last Name:</label>
+          <input type="text" class="form-control rounded-pill px-3 py-2" id="lastName" formControlName="lastName" placeholder="Your last name">
+          <!-- Validation Messages for Last Name -->
+          <div *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched" class="validation-message">
+            <span *ngIf="registerForm.get('lastName')?.errors?.['required']">Last name is required.</span>
+          </div>
+        </div>
+
+        <!-- Phone Number Input Group -->
+        <div class="form-group mb-3">
+          <label for="phoneNumber" class="form-label fw-bold">Phone Number:</label>
+          <input type="tel" class="form-control rounded-pill px-3 py-2" id="phoneNumber" formControlName="phoneNumber" placeholder="e.g., 09123456789">
+        </div>
+
+        <!-- Email (Username) Input Group -->
         <div class="form-group mb-3">
           <label for="username" class="form-label fw-bold">Email:</label>
-          <input type="email" class="form-control rounded-pill px-3 py-2" id="username" formControlName="username" placeholder="email">
+          <input type="email" class="form-control rounded-pill px-3 py-2" id="username" formControlName="username" placeholder="Your email address">
           <!-- Validation Messages for Email -->
           <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="validation-message">
             <span *ngIf="registerForm.get('username')?.errors?.['required']">Email is required.</span>
@@ -20,11 +47,11 @@
         <!-- Password Input Group -->
         <div class="form-group mb-3">
           <label for="password" class="form-label fw-bold">Password:</label>
-          <input type="password" class="form-control rounded-pill px-3 py-2" id="password" formControlName="password" placeholder="password">
+          <input type="password" class="form-control rounded-pill px-3 py-2" id="password" formControlName="password" placeholder="Minimum 6 characters">
           <!-- Validation Messages for Password -->
           <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="validation-message">
             <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</span>
-            <span *ngIf="registerForm.get('password')?.errors?.['minlength']">At least 6 chars.</span>
+            <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</span>
           </div>
         </div>
 

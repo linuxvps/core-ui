@@ -4,7 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-// یک validator سفارشی برای بررسی تطابق رمز عبور
+// A custom validator to check that two fields match.
 function passwordMatcher(form: FormGroup) {
   const password = form.get('password')?.value;
   const confirmPassword = form.get('confirmPassword')?.value;
@@ -16,8 +16,8 @@ function passwordMatcher(form: FormGroup) {
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule, // برای فرم‌های reactive
-    RouterModule         // برای routerLink
+    ReactiveFormsModule,
+    RouterModule
   ],
   templateUrl: './register.html',
   styleUrls: ['./register.css']
@@ -33,12 +33,15 @@ export class RegisterComponent {
     private http: HttpClient,
     private router: Router
   ) {
+    // Initialize the form with all the new fields and their validators.
     this.registerForm = this.fb.group({
-      // DTO شما username را به عنوان ایمیل در نظر می‌گیرد
-      username: ['', [Validators.required, Validators.email]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      phoneNumber: [''], // Optional field
+      username: ['', [Validators.required, Validators.email]], // Username is the email
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
-    }, { validators: passwordMatcher }); // اعمال validator سفارشی
+    }, { validators: passwordMatcher }); // Apply the custom password matcher
   }
 
   /**
@@ -49,34 +52,37 @@ export class RegisterComponent {
     this.successMessage = null;
 
     if (this.registerForm.invalid) {
-      // علامت‌گذاری فیلدها برای نمایش خطاها
-      this.registerForm.markAllAsTouched();
+      this.registerForm.markAllAsTouched(); // Mark all fields as touched to display validation errors
       return;
     }
 
     this.isLoading = true;
 
-    // فقط نام کاربری و رمز عبور را ارسال می‌کنیم، مطابق با CreateUserRequest
+    // The request payload now includes all the form fields
+    // to match the backend's CreateUserRequest DTO.
     const requestPayload = {
+      firstName: this.registerForm.value.firstName,
+      lastName: this.registerForm.value.lastName,
+      phoneNumber: this.registerForm.value.phoneNumber,
       username: this.registerForm.value.username,
       password: this.registerForm.value.password
-      // نقش‌ها معمولاً در بک‌اند به صورت پیش‌فرض (مثلاً 'USER') تعیین می‌شوند
     };
 
-    this.http.post('http://localhost:8080/api/users', requestPayload, { responseType: 'text' })
+    // The backend expects roles to be assigned by default, so we don't send them.
+    this.http.post('http://localhost:8080/register', requestPayload, { responseType: 'text' })
       .subscribe({
         next: (response) => {
           this.isLoading = false;
-          this.successMessage = "Registration successful! Redirecting to the login page...";
-          // پس از چند ثانیه، کاربر را به صفحه لاگین هدایت می‌کنیم
+          this.successMessage = "Registration successful! You will be redirected to the login page.";
+          // After a few seconds, redirect the user to the login page
           setTimeout(() => {
             this.router.navigate(['/login']);
           }, 3000);
         },
         error: (err: HttpErrorResponse) => {
           this.isLoading = false;
-          if (err.error) {
-            // نمایش پیام خطایی که از بک‌اند می‌آید
+          // Display the error message from the backend
+          if (err.error && typeof err.error === 'string') {
             this.errorMessage = err.error;
           } else {
             this.errorMessage = 'An unknown error occurred during registration. Please try again.';
