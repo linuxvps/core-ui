@@ -1,0 +1,196 @@
+/* DESIGNER NOTES:
+  - Font: Using 'Poppins' for a modern, clean, and professional feel.
+  - Layout: A centered, focused layout that guides the user's attention.
+  - UX: The two options are designed as large, clear, clickable cards. Hover effects provide immediate visual feedback. The "Professional" card has a subtle accent to draw attention.
+  - Colors: Leveraging the established corporate palette for brand consistency.
+  - UPDATE: Added a dynamic gradient background to create strong visual separation between the page and the selection card, addressing the "everything is white" issue.
+*/
+
+/* Import a modern, professional font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Define CSS Variables for the theme */
+:root {
+  --primary-color: #1a365d;      /* Deep Corporate Blue */
+  --secondary-color: #2c5282;    /* Lighter Corporate Blue */
+  --accent-color: #4299e1;       /* Bright Accent Blue */
+  --professional-accent: #38a169; /* Distinct Green for Professionals */
+  --text-dark: #2d3748;          /* Dark Gray for Text */
+  --text-light: #718096;         /* Lighter Gray for Subtitles */
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --shadow-color: rgba(45, 55, 72, 0.1);
+}
+
+.selection-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* UPDATED: Using a gradient background for strong contrast */
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  animation: backgroundAnimation 15s ease infinite;
+  background-size: 200% 200%;
+  font-family: 'Poppins', sans-serif;
+  padding: 2rem;
+}
+
+.selection-card-wrapper {
+  width: 100%;
+  max-width: 800px;
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 3rem 4rem;
+  box-shadow: 0 20px 40px var(--shadow-color);
+  animation: floatIn 0.8s ease-out;
+}
+
+.selection-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.selection-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0 0 0.5rem 0;
+}
+
+.selection-header p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.option-card {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text-dark);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px var(--shadow-color);
+}
+
+.option-icon {
+  font-size: 2.5rem;
+  margin-right: 1.5rem;
+  width: 60px;
+  text-align: center;
+}
+
+.option-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.option-content p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.option-arrow {
+  margin-left: auto;
+  font-size: 1.5rem;
+  color: var(--border-color);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.option-card:hover .option-arrow {
+  transform: translateX(5px);
+}
+
+/* Specific styling for each card type */
+.option-card.client .option-icon {
+  color: var(--accent-color);
+}
+.option-card.client:hover {
+  border-color: var(--accent-color);
+}
+.option-card.client:hover .option-arrow {
+  color: var(--accent-color);
+}
+
+.option-card.professional .option-icon {
+  color: var(--professional-accent);
+}
+.option-card.professional:hover {
+  border-color: var(--professional-accent);
+}
+.option-card.professional:hover .option-arrow {
+  color: var(--professional-accent);
+}
+
+
+.footer-link {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.footer-link a {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .selection-card-wrapper {
+    padding: 2rem;
+  }
+  .selection-header h1 {
+    font-size: 2rem;
+  }
+  .option-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .option-icon {
+    margin: 0 0 1rem 0;
+  }
+  .option-arrow {
+    display: none; /* Hide arrow on mobile for a cleaner look */
+  }
+}
+
+/* Animations */
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* NEW: Animation for the gradient background */
+@keyframes backgroundAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

@@ -12,17 +12,17 @@ function passwordMatcher(form: FormGroup) {
 }
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-register-professional',
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule
   ],
-  templateUrl: './register.html',
-  styleUrls: ['./register.css']
+  templateUrl: './register-professional.html',
+  styleUrls: ['./register-professional.css']
 })
-export class RegisterComponent {
+export class RegisterProfessionalComponent {
   registerForm: FormGroup;
   errorMessage: string | null = null;
   successMessage: string | null = null;
@@ -33,59 +33,49 @@ export class RegisterComponent {
     private http: HttpClient,
     private router: Router
   ) {
-    // Initialize the form with all the new fields and their validators.
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      phoneNumber: [''], // Optional field
-      username: ['', [Validators.required, Validators.email]], // Username is the email
+      phoneNumber: [''], // Optional
+      username: ['', [Validators.required, Validators.email]], // Email
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
-    }, { validators: passwordMatcher }); // Apply the custom password matcher
+    }, { validators: passwordMatcher });
   }
 
-  /**
-   * Handles the registration form submission.
-   */
   onSubmit(): void {
     this.errorMessage = null;
     this.successMessage = null;
 
     if (this.registerForm.invalid) {
-      this.registerForm.markAllAsTouched(); // Mark all fields as touched to display validation errors
+      this.registerForm.markAllAsTouched();
       return;
     }
 
     this.isLoading = true;
 
-    // The request payload now includes all the form fields
-    // to match the backend's CreateUserRequest DTO.
+    // We send the userType along with the other data
     const requestPayload = {
-      firstName: this.registerForm.value.firstName,
-      lastName: this.registerForm.value.lastName,
-      phoneNumber: this.registerForm.value.phoneNumber,
-      username: this.registerForm.value.username,
-      password: this.registerForm.value.password
+      ...this.registerForm.value,
+      userType: 'PROFESSIONAL' // Specify the user type for the backend
     };
 
-    // The backend expects roles to be assigned by default, so we don't send them.
-    this.http.post('http://localhost:8080/register/user', requestPayload, { responseType: 'text' })
+    // Assuming a single registration endpoint as discussed
+    this.http.post('http://localhost:8080/api/auth/register', requestPayload, { responseType: 'text' })
       .subscribe({
         next: (response) => {
           this.isLoading = false;
-          this.successMessage = "Registration successful! You will be redirected to the login page.";
-          // After a few seconds, redirect the user to the login page
+          this.successMessage = "Professional account created successfully! Redirecting to login...";
           setTimeout(() => {
             this.router.navigate(['/login']);
           }, 3000);
         },
         error: (err: HttpErrorResponse) => {
           this.isLoading = false;
-          // Display the error message from the backend
           if (err.error && typeof err.error === 'string') {
             this.errorMessage = err.error;
           } else {
-            this.errorMessage = 'An unknown error occurred during registration. Please try again.';
+            this.errorMessage = 'An unknown error occurred. Please try again.';
           }
           console.error('Registration failed:', err);
         }

@@ -1,0 +1,53 @@
+<!--
+  Reminder: Add Font Awesome to your index.html for the icons to appear:
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+-->
+<div class="selection-container">
+  <div class="selection-card-wrapper">
+
+    <!-- Header Section -->
+    <div class="selection-header">
+      <h1>Join Our Platform</h1>
+      <p>Choose your path to get started. Are you here to find an expert, or to offer your services?</p>
+    </div>
+
+    <!-- Options Container -->
+    <div class="options-grid">
+
+      <!-- Option 1: Client -->
+      <a routerLink="/register" class="option-card client">
+        <div class="option-icon">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="option-content">
+          <h2>I'm a Client</h2>
+          <p>Looking for top-tier professionals to help with your needs.</p>
+        </div>
+        <div class="option-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
+
+      <!-- Option 2: Professional -->
+      <a routerLink="/register-professional" class="option-card professional">
+        <div class="option-icon">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="option-content">
+          <h2>I'm a Professional</h2>
+          <p>Ready to offer your expertise and grow your business.</p>
+        </div>
+        <div class="option-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Footer Link -->
+    <div class="footer-link">
+      <p>Already have an account? <a routerLink="/login">Log In</a></p>
+    </div>
+
+  </div>
+</div>
