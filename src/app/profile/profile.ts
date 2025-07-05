@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './profile.html',
   styleUrls: ['./profile.css']
 })
@@ -59,7 +59,7 @@ export class ProfileComponent implements OnInit {
     this.successMessage = null;
 
     // The form value will not include disabled controls, which is fine.
-    this.http.put('http://localhost:8080/api/profile/me', this.profileForm.value, { responseType: 'text' }).subscribe({
+    this.http.put('http://localhost:8080/api/users/me', this.profileForm.value, { responseType: 'text' }).subscribe({
       next: (response) => {
         this.successMessage = response;
         this.isLoading = false;
