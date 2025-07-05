@@ -67,7 +67,7 @@ export class RegisterComponent {
       .subscribe({
         next: (response) => {
           this.isLoading = false;
-          this.successMessage = "Registration successful! You will be redirected to the login page.";
+          this.successMessage = "Registration successful! Redirecting to the login page...";
           // پس از چند ثانیه، کاربر را به صفحه لاگین هدایت می‌کنیم
           setTimeout(() => {
             this.router.navigate(['/login']);
