@@ -69,7 +69,7 @@ export class RegisterComponent {
     };
 
     // The backend expects roles to be assigned by default, so we don't send them.
-    this.http.post('http://localhost:8080/register', requestPayload, { responseType: 'text' })
+    this.http.post('http://localhost:8080/register/user ', requestPayload, { responseType: 'text' })
       .subscribe({
         next: (response) => {
           this.isLoading = false;
