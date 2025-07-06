@@ -121,14 +121,14 @@
 .btn-submit {
   width: 100%;
   padding: 1rem;
-  border: none;
   border-radius: 8px;
   background-color: var(--accent-color);
-  color: white;
+  color: black;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
+  border: 0.1px solid lightslategray;
 }
 
 .btn-submit:hover {
