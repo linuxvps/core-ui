@@ -32,8 +32,17 @@
   background: var(--card-bg);
   border-radius: 24px;
   padding: 2.5rem 3rem;
-  box-shadow: 0 20px 40px var(--shadow-color);
   animation: floatIn 0.8s ease-out;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1); /* حاشیه ظریف */
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.05); /* سایه‌های لایه‌ای */
+  background-color: var(--card-bg);
+  position: relative; /* برای افکت‌های بعدی */
+
 }
 
 .card-title {
@@ -72,17 +81,19 @@
 .form-control {
   width: 100%;
   padding: 0.8rem 1rem;
-  border: 1px solid var(--border-color);
   border-radius: 8px;
-  background-color: var(--input-bg);
   font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: white; /* تغییر از --input-bg به سفید برای کنتراست بیشتر */
+  border: 2px solid var(--border-color); /* ضخامت border افزایش یافت */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05); /* سایه داخلی */
 }
 
 .form-control:focus {
   outline: none;
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.2);
+  box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.2),  inset 0 1px 3px rgba(0, 0, 0, 0.05);
+
 }
 
 .validation-message {
@@ -165,4 +176,14 @@
 @keyframes floatIn {
   from { opacity: 0; transform: translateY(25px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* استایل برای فیلدهای دارای خطا */
+.is-invalid {
+  border-color: var(--error-color);
+}
+
+/* استایل برای فیلدهای معتبر */
+.is-valid {
+  border-color: var(--success-color);
 }
