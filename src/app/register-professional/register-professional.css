@@ -122,17 +122,22 @@
   width: 100%;
   padding: 1rem;
   border-radius: 8px;
-  background-color: var(--accent-color);
   color: black;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-  border: 0.1px solid lightslategray;
+  border: 1px solid rgba(0, 0, 0, 0.1); /* حاشیه ظریف */
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.05); /* سایه‌های لایه‌ای */
+  background-color: var(--card-bg);
+  position: relative; /* برای افکت‌های بعدی */
 }
 
 .btn-submit:hover {
-  background-color: #2f855a;
+  background-color: limegreen;
   transform: translateY(-2px);
 }
 
