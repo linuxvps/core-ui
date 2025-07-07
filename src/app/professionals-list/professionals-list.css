@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #1a365d;
+  --secondary-color: #2c5282;
+  --accent-color: #4299e1;
+  --text-dark: #2d3748;
+  --text-light: #718096;
+  --card-bg: #ffffff;
+  --page-bg: #f7fafc;
+  --border-color: #e2e8f0;
+  --shadow-color: rgba(45, 55, 72, 0.1);
+  --error-color: #e53e3e;
+  --success-color: #38a169;
+}
+
+.list-page-container {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--page-bg);
+  min-height: 100vh;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInDown 0.8s ease-out;
+  width: 100%;
+  max-width: 800px;
+}
+
+.list-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.list-header p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Loading and Error States */
+.loading-container, .error-container, .no-data-message {
+  text-align: center;
+  padding: 4rem;
+  color: var(--text-light);
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  margin-top: 2rem;
+}
+.spinner {
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--accent-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem auto;
+}
+.error-container i {
+  font-size: 3rem;
+  color: var(--error-color);
+  margin-bottom: 1rem;
+}
+.no-data-message i {
+  font-size: 3rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+.btn-retry {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+.btn-retry:hover {
+  background-color: #3182ce;
+}
+
+/* Professionals Grid */
+.professionals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  animation: fadeInUp 1s ease-out;
+  width: 100%;
+  max-width: 1200px; /* Limit grid width */
+  margin-top: 2rem;
+}
+
+.professional-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.professional-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(45, 55, 72, 0.15);
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.5rem;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.professional-name {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.professional-specialty {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent-color);
+  margin: 0.25rem 0 1rem 0;
+}
+
+.professional-bio {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  min-height: 4.5em; /* Ensure consistent height for bio to prevent CLS */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit bio to 3 lines */
+  -webkit-box-orient: vertical;
+}
+
+.card-footer {
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  border-top: 1px solid var(--border-color);
+}
+
+.btn-view-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.btn-view-profile:hover {
+  background-color: var(--secondary-color);
+}
+
+.btn-view-profile i {
+  margin-left: 0.5rem;
+  transition: transform 0.3s;
+}
+
+.btn-view-profile:hover i {
+  transform: translateX(4px);
+}
+
+/* Pagination Section */
+.pagination-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  width: 100%;
+  max-width: 1200px;
+}
+
+.pagination-info {
+  color: var(--text-dark);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-right: auto; /* Pushes pagination controls to the right */
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center; /* Center buttons on smaller screens */
+}
+
+.pagination-button {
+  background-color: var(--page-bg);
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.pagination-button:hover:not([disabled]) {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-button.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  font-weight: 600;
+}
+
+.page-size-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto; /* Pushes page size selector to the right */
+}
+
+.page-size-selector label {
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.page-size-select {
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--page-bg);
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.page-size-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2);
+}
+
+/* Animations */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .list-page-container {
+    padding: 2rem 1rem;
+  }
+
+  .list-header h1 {
+    font-size: 2rem;
+  }
+
+  .list-header p {
+    font-size: 1rem;
+  }
+
+  .professionals-grid {
+    grid-template-columns: 1fr; /* Single column layout on small screens */
+    gap: 1.5rem;
+  }
+
+  .pagination-section {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .pagination-info {
+    margin-right: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .pagination-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .pagination-button {
+    flex-grow: 1; /* Make buttons fill available space */
+    padding: 0.6rem 1rem;
+  }
+
+  .page-size-selector {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination-controls {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,89 @@
+<!--
+  Reminder: Add Font Awesome to your index.html for the icons to appear:
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+-->
+<div class="list-page-container">
+  <div class="list-header">
+    <h1>Find Your Expert</h1>
+    <p>Browse our network of top-tier professionals ready to help you.</p>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading Professionals...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="error-container">
+    <i class="fas fa-exclamation-triangle"></i>
+    <p>{{ errorMessage }}</p>
+    <button (click)="loadProfessionals()" class="btn-retry">Retry</button>
+  </div>
+
+  <!-- Content State -->
+  <div *ngIf="!isLoading && !errorMessage">
+    <div *ngIf="professionals.length > 0" class="professionals-grid">
+      <!-- Loop through each professional and create a card -->
+      <div *ngFor="let professional of professionals" class="professional-card">
+        <div class="card-header">
+          <img [src]="professional.profilePictureUrl || 'https://placehold.co/100x100/E2E8F0/4A5568?text=Avatar'"
+               alt="Profile picture of {{ professional.firstName }} {{ professional.lastName }}"
+               class="profile-avatar"
+               (error)="professional.profilePictureUrl = 'https://placehold.co/100x100/E2E8F0/4A5568?text=Avatar'">
+        </div>
+        <div class="card-body">
+          <h2 class="professional-name">{{ professional.firstName }} {{ professional.lastName }}</h2>
+          <p class="professional-specialty">{{ professional.specialty || 'Specialist' }}</p>
+          <p class="professional-bio">{{ (professional.bio && professional.bio.length > 100) ? (professional.bio | slice:0:100) + '...' : professional.bio }}</p>
+        </div>
+        <div class="card-footer">
+          <a [routerLink]="['/professionals', professional.id]" class="btn-view-profile">
+            View Profile & Book
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="professionals.length === 0 && !isLoading && !errorMessage" class="no-data-message">
+      <i class="fas fa-info-circle"></i>
+      <p>No professionals found matching your criteria.</p>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div *ngIf="totalPages > 1" class="pagination-section">
+      <div class="pagination-info">
+        Page {{ currentPage + 1 }} of {{ totalPages }} (Total: {{ totalElements }} Professionals)
+      </div>
+
+      <div class="pagination-controls">
+        <button (click)="previousPage()" [disabled]="currentPage === 0" class="pagination-button">
+          <i class="fas fa-chevron-left"></i> Previous
+        </button>
+
+        <ng-container *ngFor="let pageNum of getPageNumbers()">
+          <button (click)="goToPage(pageNum)"
+                  [class.active]="pageNum === currentPage"
+                  class="pagination-button page-number-button">
+            {{ pageNum + 1 }}
+          </button>
+        </ng-container>
+
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages - 1" class="pagination-button">
+          Next <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div class="page-size-selector">
+        <label for="pageSize">Items per page:</label>
+        <select id="pageSize" [(ngModel)]="pageSize" (change)="onPageSizeChange()" class="page-size-select">
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="20">20</option>
+          <option [value]="50">50</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

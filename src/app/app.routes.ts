@@ -6,6 +6,7 @@ import {RegisterComponent} from './register/register';
 import {ProfileComponent} from './profile/profile';
 import {RegisterTypeComponent} from './register-type/register-type';
 import {RegisterProfessionalComponent} from './register-professional/register-professional';
+import {ProfessionalsListComponent} from './professionals-list/professionals-list';
 // وارد کردن صحیح کامپوننت ثبت‌نام
 // فرض می‌کنیم یک گارد برای محافظت از مسیرها دارید
 // import { authGuard } from './auth.guard';
@@ -38,6 +39,7 @@ export const routes: Routes = [
   },
   {path: 'profile', component: ProfileComponent /*, canActivate: [authGuard] */},
   {path: 'register-type', component: RegisterTypeComponent /*, canActivate: [authGuard] */},
+  { path: 'professionals', component: ProfessionalsListComponent },
   { path: 'register-professional', component: RegisterProfessionalComponent },
 
 

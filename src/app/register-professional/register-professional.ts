@@ -61,7 +61,7 @@ export class RegisterProfessionalComponent {
     };
 
     // Assuming a single registration endpoint as discussed
-    this.http.post('http://localhost:8080/api/auth/register', requestPayload, { responseType: 'text' })
+    this.http.post('http://localhost:8080/register/professional', requestPayload, { responseType: 'text' })
       .subscribe({
         next: (response) => {
           this.isLoading = false;
