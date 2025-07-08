@@ -116,6 +116,7 @@
 .professional-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(45, 55, 72, 0.15);
+  color: #2f855a;
 }
 
 .card-header {
@@ -177,7 +178,7 @@
   justify-content: center;
   width: 100%;
   padding: 0.8rem;
-  background-color: var(--primary-color);
+  background-color: rgba(45, 55, 72, 0.2);
   color: white;
   text-decoration: none;
   border-radius: 8px;
@@ -186,7 +187,7 @@
 }
 
 .btn-view-profile:hover {
-  background-color: var(--secondary-color);
+  background-color: #4099e1;
 }
 
 .btn-view-profile i {
