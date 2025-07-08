@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Color Palette & Typography Variables */
+:root {
+  --primary-dark: #2c3e50;    /* Dark Blue/Gray for main text, headings */
+  --primary-medium: #34495e;  /* Slightly lighter dark blue */
+  --accent-blue: #3498db;     /* Bright Blue for accents, links */
+  --accent-green: #2ecc71;    /* Green for success, booking buttons */
+  --text-light: #7f8c8d;      /* Lighter gray for secondary text */
+  --page-background: #f7fafc; /* Consistent light gray for page background (matches list) */
+  --card-background: #ffffff; /* White for card background */
+  --border-light: #e0e0e0;    /* Light gray for borders */
+  --shadow-color: rgba(0, 0, 0, 0.08); /* Subtle shadow - base for calculations */
+  --error-red: #e74c3c;      /* Red for error messages */
+
+  --font-family-primary: 'Inter', sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.6;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--page-background); /* Ensure body also uses the consistent background */
+}
+
+/* Page Container */
+.detail-page-container {
+  font-family: var(--font-family-primary);
+  background-color: var(--page-background); /* Using the consistent page background variable */
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--primary-dark);
+}
+
+/* Back Button */
+.back-button {
+  align-self: flex-start; /* Aligns to the left */
+  background-color: var(--primary-medium);
+  color: var(--card-background);
+  border: 1px solid var(--primary-medium); /* Added border */
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+}
+
+.back-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced hover shadow */
+}
+
+/* Status Messages (Loading, Error) */
+.status-message {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-light);
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--card-background);
+  border-radius: 12px;
+  border: 1px solid var(--border-light); /* Added border */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* More distinct shadow */
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-message p, .error-message p {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  color: var(--primary-dark);
+}
+
+.spinner {
+  border: 4px solid var(--border-light);
+  border-top: 4px solid var(--accent-blue);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.error-message i {
+  font-size: 3rem;
+  color: var(--error-red);
+  margin-bottom: 1rem;
+}
+
+.btn-action {
+  background-color: var(--accent-blue);
+  color: white;
+  border: 1px solid var(--accent-blue); /* Added border */
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+}
+
+.btn-action:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced hover shadow */
+}
+
+/* Professional Detail Card */
+.professional-detail-card {
+  background: var(--card-background);
+  border-radius: 16px;
+  border: 1px solid var(--border-light); /* Added border */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18); /* Significantly more prominent shadow */
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+
+.profile-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  width: 100%;
+}
+
+.profile-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid var(--accent-blue);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+}
+
+.professional-name {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.professional-specialty {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--accent-blue);
+  margin-bottom: 1rem;
+}
+
+.profile-body {
+  text-align: left;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-light);
+}
+
+.professional-bio {
+  font-size: 1.05rem;
+  color: var(--primary-dark);
+  line-height: var(--line-height-base);
+  margin-bottom: 1.5rem;
+}
+
+.detail-info-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column */
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.detail-info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: var(--primary-dark);
+  background-color: var(--page-background); /* Using the consistent page background variable */
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: 2px solid var(--border-light); /* Thicker border */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Added subtle shadow */
+}
+
+.detail-info-item i {
+  color: var(--accent-blue);
+  font-size: 1.1em;
+}
+
+.profile-actions {
+  width: 100%;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light);
+  text-align: center;
+}
+
+.btn-book {
+  background-color: var(--accent-green);
+  color: black;
+  border: 1px solid var(--accent-green); /* Added border */
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Initial shadow */
+}
+
+.btn-book:hover {
+  background-color: #27ae60;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4); /* Enhanced hover shadow */
+}
+
+/* Animations */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(100, 100, 100, 0.1); /* Slightly lighter overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's on top */
+  animation: fadeIn 0.3s ease-out;
+  backdrop-filter: blur(8px); /* Adjust the pixel value for more/less blur */
+  -webkit-backdrop-filter: blur(8px); /* For Safari support */
+}
+
+.modal-content {
+  background-color: var(--card-background);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Prominent shadow for the modal */
+  width: 90%;
+  max-width: 450px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  animation: zoomIn 0.3s ease-out;
+  border: 1px solid var(--border-light); /* Clear border */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin: 0;
+}
+
+.modal-close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.modal-close-button:hover {
+  color: var(--error-red);
+}
+
+.modal-body {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.modal-icon {
+  font-size: 4rem;
+  color: var(--accent-green); /* Green checkmark for success */
+  margin-bottom: 1.5rem;
+  animation: bounceIn 0.6s ease-out;
+}
+
+.modal-body p {
+  font-size: 1.1rem;
+  color: var(--primary-dark);
+  line-height: var(--line-height-base);
+}
+
+.modal-footer {
+  text-align: center;
+}
+
+.btn-ok {
+  background-color: var(--accent-blue);
+  color: white;
+  border: 1px solid var(--accent-blue);
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-ok:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* New Animations for Modal */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.1); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* Responsive Adjustments for Modal */
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 1.5rem;
+  }
+  .modal-title {
+    font-size: 1.5rem;
+  }
+  .modal-icon {
+    font-size: 3rem;
+  }
+  .modal-body p {
+    font-size: 1rem;
+  }
+  .btn-ok {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+  }
+}

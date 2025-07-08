@@ -1,0 +1,79 @@
+<!--
+  Reminder: Add Font Awesome to your index.html for the icons to appear:
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+-->
+<div class="detail-page-container">
+  <button (click)="goBackToList()" class="back-button" aria-label="Back to Professionals List">
+    <i class="fas fa-arrow-left"></i> Back to Professionals
+  </button>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="status-message loading-message">
+    <div class="spinner"></div>
+    <p>Loading Professional Details...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="status-message error-message">
+    <i class="fas fa-exclamation-triangle"></i>
+    <p>{{ errorMessage }}</p>
+    <button (click)="loadProfessionalDetails(professionalId!)" class="btn-action">Retry</button>
+  </div>
+
+  <!-- Professional Details Content -->
+  <div *ngIf="!isLoading && !errorMessage && professional" class="professional-detail-card">
+    <div class="profile-header">
+      <img [src]="professional.profilePictureUrl || 'https://placehold.co/150x150/E2E8F0/4A5568?text=Avatar'"
+           alt="Profile picture of {{ professional.firstName }} {{ professional.lastName }}"
+           class="profile-avatar"
+           (error)="professional.profilePictureUrl = 'https://placehold.co/150x150/E2E8F0/4A5568?text=Avatar'">
+      <h1 class="professional-name">{{ professional.firstName }} {{ professional.lastName }}</h1>
+      <p class="professional-specialty">{{ professional.specialty || 'Specialist' }}</p>
+    </div>
+
+    <div class="profile-body">
+      <h2 class="section-title">About Me</h2>
+      <p class="professional-bio">{{ professional.bio || 'No biography provided.' }}</p>
+
+      <!-- Example of additional details (uncomment if you add these to ProfessionalProfile interface) -->
+      <!--
+      <h2 class="section-title">Consultation Details</h2>
+      <div class="detail-info-grid">
+        <div class="detail-info-item">
+          <i class="fas fa-clock"></i>
+          <span>Duration: {{ professional.consultationDurationMinutes }} minutes</span>
+        </div>
+        <div class="detail-info-item">
+          <i class="fas fa-dollar-sign"></i>
+          <span>Price: ${{ professional.consultationPrice?.toFixed(2) }}</span>
+        </div>
+      </div>
+      -->
+    </div>
+
+    <div class="profile-actions">
+      <button (click)="bookConsultation()" class="btn-action btn-book">
+        <i class="fas fa-calendar-alt"></i> Book Consultation
+      </button>
+    </div>
+  </div>
+
+  <!-- Custom Booking Confirmation Modal -->
+  <div *ngIf="showBookingConfirmationModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Booking Confirmation</h3>
+        <button (click)="closeBookingConfirmationModal()" class="modal-close-button" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <i class="fas fa-check-circle modal-icon"></i>
+        <p>{{ bookingMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeBookingConfirmationModal()" class="btn-action btn-ok">Got It!</button>
+      </div>
+    </div>
+  </div>
+</div>
