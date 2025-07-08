@@ -246,7 +246,7 @@
 
 .pagination-button:hover:not([disabled]) {
   background-color: var(--accent-color);
-  color: white;
+  color: green;
   border-color: var(--accent-color);
 }
 

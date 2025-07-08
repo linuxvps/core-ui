@@ -7,6 +7,7 @@ import {ProfileComponent} from './profile/profile';
 import {RegisterTypeComponent} from './register-type/register-type';
 import {RegisterProfessionalComponent} from './register-professional/register-professional';
 import {ProfessionalsListComponent} from './professionals-list/professionals-list';
+import {ProfessionalDetailComponent} from './professional-detail/professional-detail';
 // وارد کردن صحیح کامپوننت ثبت‌نام
 // فرض می‌کنیم یک گارد برای محافظت از مسیرها دارید
 // import { authGuard } from './auth.guard';
@@ -41,6 +42,7 @@ export const routes: Routes = [
   {path: 'register-type', component: RegisterTypeComponent /*, canActivate: [authGuard] */},
   { path: 'professionals', component: ProfessionalsListComponent },
   { path: 'register-professional', component: RegisterProfessionalComponent },
+  { path: 'professionals/:id', component: ProfessionalDetailComponent }, // مسیر جدید برای جزئیات متخصص
 
 
   // مسیر Wildcard: اگر کاربر مسیری را وارد کرد که وجود ندارد، او را به لاگین بفرست
